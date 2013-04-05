@@ -1,0 +1,10 @@
+.topnav li a {
+    padding: 30px !important;
+}
+header .navbar .navbar-inner {
+    height: 80px;
+}
+
+section#intro {
+color: #000;
+}
