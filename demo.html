@@ -95,7 +95,7 @@
 		  var mtitle = data.photos[i].photo_title;
           var marker = new google.maps.Marker({
            position: latLng,
-           draggable: true,
+           draggable: false,
            icon: markerImage,
 		   animation: google.maps.Animation.DROP,
 		   title: mtitle
@@ -238,7 +238,7 @@ max-width: none;
 				<div class="row">
 					<div class="span6">
 						<div class="btn-toolbar cta">
-							<a class="btn btn-large btn-inverse" href="#"><i class="m-icon-big-swapup m-icon-white" data-loading-text="Loading..."></i>I wanna add my needs to this map!</a>
+							<a  data-toggle="modal" class="btn btn-large btn-inverse" href="#needmodal"><i class="m-icon-big-swapup m-icon-white" data-loading-text="Loading..."></i>I wanna add my needs to this map!</a>
 						</div>
 					</div>
 					<div class="span6">
@@ -251,7 +251,55 @@ max-width: none;
 			</div>
 		</div>
 	</div>
+
+
+    <!-- Modal -->
+    <div id="needmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">I need Google, for...</h3>
+        </div>
+        <div class="modal-body">
+            <form id="needform">
+                <fieldset>
+                    <legend>Fill this fields</legend>
+                    <label>Your name</label>
+                    <input name="name" type="text" placeholder="Type something…">
+                    <br />
+                    <label>Why You like Google?</label>
+                    <input name="who" type="text" placeholder="Type something…">
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button id="needsend" class="btn btn-primary">Send</button>
+        </div>
+    </div>
 </div>
+<!-- handle -->
+<script>
+    jQuery(document).ready(function($){
+       $("#needsend").click(function(){
+          var formdata = $("#needform").serialize();
+          alert(formdata);
+          
+           $.ajax({
+           type: "POST",
+           url: "demo.html",
+           data: formdata,
+           success: function(data)
+           {
+               //alert(data);
+               alert("Success...");
+           }
+         });
+
+       });
+    });
+</script>
+<!-- handle -->
+
 <!-- end tagline -->
 
 <!-- Footer
